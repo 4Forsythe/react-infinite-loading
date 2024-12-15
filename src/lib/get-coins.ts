@@ -13,8 +13,8 @@ interface GetCoinsResponse {
   }
 }
 
-export async function getCoins(params?: Params): Promise<Coin[]> {
-  const { data } = await instance.get<GetCoinsResponse>('/coins', { params })
+export async function getCoins({ limit = 20, offset = 0 }: Params): Promise<Coin[]> {
+  const { data } = await instance.get<GetCoinsResponse>('/coins', { params: { limit, offset } })
 
   return data.data.coins
 }
